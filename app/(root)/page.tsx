@@ -1,4 +1,5 @@
 import Collections from "@/components/Collections";
+import ProductList from "@/components/Productlist";
 import Image from "next/image";
 import React from "react";
 
@@ -16,6 +17,9 @@ const HomePage = () => {
 
       {/* Collections Component */}
       <Collections />
+
+      {/* ProductList Component */}
+      <ProductList />
     </>
   );
 };
