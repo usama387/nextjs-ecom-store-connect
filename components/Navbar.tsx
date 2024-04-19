@@ -1,4 +1,5 @@
 "use client";
+import useCart from "@/lib/hooks/useCart";
 import { UserButton, useUser } from "@clerk/nextjs";
 import {
   CircleUserRound,
@@ -14,7 +15,10 @@ const Navbar = () => {
   // accessing logged in user to show menu and this method works only for client side
   const { user } = useUser();
 
+  // managing state for dropdown
   const [dropDownMenu, setDropDownMenu] = useState(false);
+
+  const cart = useCart();
 
   return (
     <div className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-white">
@@ -30,7 +34,7 @@ const Navbar = () => {
 
       {/* Contains Home route and dark mode switch */}
       <div className="flex items-center gap-2">
-        <Link href={"/"}>Home</Link>
+        <Link href={"/"} className="bg-teal-600 text-white p-2 rounded-md">Home</Link>
         {/* Dark Mode Switch */}
       </div>
 
@@ -41,7 +45,9 @@ const Navbar = () => {
           className="flex items-center gap-3 rounded-md px-2 py-1 hover:bg-black hover:text-white"
         >
           <ShoppingBag />
-          <p className="text-base-medium">Cart (0)</p>
+
+          {/* accessing current state of cart with cartItems hook of useCart */}
+          <p className="text-base-medium">Cart ({cart.cartItems.length})</p>
         </Link>
 
         {/* Wishlist and orders */}
